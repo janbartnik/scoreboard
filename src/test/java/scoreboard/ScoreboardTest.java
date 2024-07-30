@@ -122,7 +122,7 @@ public class ScoreboardTest {
     @Test
     public void shouldNotDeleteMatchFromScoreboardWhenDoesNotExist() {
         //given
-        Match match = new Match("home", "away");;
+        Match match = new Match("home", "away");
         scoreboard.getMatches().add(match);
 
         //when
