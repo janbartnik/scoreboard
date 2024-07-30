@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Scoreboard {
 
-    private List<Match> matches;
+    private final List<Match> matches;
 
     public Scoreboard() {
         matches = new ArrayList<>();
     }
 
     public void addNewMatch(String homeTeam, String awayTeam) {
-
+        matches.add(new Match(homeTeam, awayTeam));
     }
 
     List<Match> getMatches() {

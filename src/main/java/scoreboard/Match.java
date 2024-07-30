@@ -9,6 +9,8 @@ public class Match {
     public Match(String homeTeam, String awayTeam) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
+        homeScore = 0;
+        awayScore = 0;
     }
 
     public String getHomeTeam() {
