@@ -41,4 +41,15 @@ public class ScoreboardTest {
         assertEquals(1, scoreboard.getMatches().size());
 
     }
+
+    @Test
+    public void shouldNotAllowedToAddTeamsWithSameName() {
+        //given
+        //when
+        scoreboard.addNewMatch("TeamOne", "TeamOne");
+
+        //then
+        assertEquals(0, scoreboard.getMatches().size());
+
+    }
 }
