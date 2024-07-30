@@ -38,7 +38,8 @@ public class Scoreboard {
     }
 
     public void finishMatch(String homeTeam, String awayTeam) {
-
+        Match matchToRemove = new Match(homeTeam, awayTeam);
+        matches.remove(matchToRemove);
     }
 
     List<Match> getMatches() {
