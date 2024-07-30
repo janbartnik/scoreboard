@@ -3,6 +3,9 @@ package scoreboard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ScoreboardTest {
@@ -145,6 +148,31 @@ public class ScoreboardTest {
 
         //then
         assertFalse(scoreboard.getMatches().contains(match2));
+    }
+
+    @Test void shouldReturnSummaryInDescendingOrder() {
+        //given
+        Match match1 = new Match("home1", "away1", 1, 0);
+        Match match2 = new Match("home2", "away2", 0, 1);
+        Match match3 = new Match("home3", "away3", 3,0);
+        Match match4 = new Match("home4", "away4", 2,2);
+        scoreboard.getMatches().add(match1);
+        scoreboard.getMatches().add(match2);
+        scoreboard.getMatches().add(match3);
+        scoreboard.getMatches().add(match4);
+
+        List<Match> expected = new ArrayList<>();
+        expected.add(match4);
+        expected.add(match3);
+        expected.add(match2);
+        expected.add(match1);
+
+        //when
+        List<Match> result = scoreboard.getSummary();
+
+        //then
+        assertIterableEquals(expected, result);
+
     }
 
 }

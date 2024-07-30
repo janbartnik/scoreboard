@@ -42,6 +42,10 @@ public class Scoreboard {
         matches.remove(matchToRemove);
     }
 
+    public List<Match> getSummary() {
+        return new ArrayList<>();
+    }
+
     List<Match> getMatches() {
         return matches;
     }
