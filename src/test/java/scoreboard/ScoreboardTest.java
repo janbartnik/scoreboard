@@ -100,4 +100,19 @@ public class ScoreboardTest {
         assertEquals(0, scoreboard.getMatches().getFirst().getHomeScore());
         assertEquals(0, scoreboard.getMatches().getFirst().getAwayScore());
     }
+
+    @Test
+    public void shouldDeleteMatchFromScoreboardWhenFinishes() {
+        //given
+        String homeTeam = "home";
+        String awayTeam = "away";
+        Match match = new Match("home", "away");;
+        scoreboard.getMatches().add(match);
+
+        //when
+        scoreboard.finishMatch(homeTeam, awayTeam);
+
+        //then
+        assertEquals(0, scoreboard.getMatches().size());
+    }
 }

@@ -37,6 +37,10 @@ public class Scoreboard {
         }
     }
 
+    public void finishMatch(String homeTeam, String awayTeam) {
+
+    }
+
     List<Match> getMatches() {
         return matches;
     }
