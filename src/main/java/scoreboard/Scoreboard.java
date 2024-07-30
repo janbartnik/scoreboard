@@ -11,11 +11,29 @@ public class Scoreboard {
         matches = new ArrayList<>();
     }
 
-    public void addNewMatch(String homeTeam, String awayTeam) {
-        matches.add(new Match(homeTeam, awayTeam));
+    /**
+     *
+     * @param homeTeam home team name
+     * @param awayTeam away team name
+     * @return true when match was added to scoreboard
+     */
+    public boolean addNewMatch(String homeTeam, String awayTeam) {
+        if (isPlaying(homeTeam) || isPlaying(awayTeam)) {
+            return false;
+        }
+        return matches.add(new Match(homeTeam, awayTeam));
     }
 
     List<Match> getMatches() {
         return matches;
+    }
+
+    private boolean isPlaying(String team) {
+        for (Match match : matches) {
+            if (match.getHomeTeam().equals(team) || match.getAwayTeam().equals(team)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
