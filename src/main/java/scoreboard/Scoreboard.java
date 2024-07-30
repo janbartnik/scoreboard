@@ -24,6 +24,10 @@ public class Scoreboard {
         return matches.add(new Match(homeTeam, awayTeam));
     }
 
+    public void updateScore(String homeTeam, String awayTeam, int homeScore, int awayScore) {
+
+    }
+
     List<Match> getMatches() {
         return matches;
     }

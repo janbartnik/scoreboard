@@ -52,4 +52,20 @@ public class ScoreboardTest {
         assertEquals(0, scoreboard.getMatches().size());
 
     }
+
+    @Test
+    public void shouldUpdateScoresOfMatch() {
+        //given
+        String homeTeam = "home";
+        String awayTeam = "away";
+        Match match = new Match("home", "away");;
+        scoreboard.getMatches().add(match);
+
+        //when
+        scoreboard.updateScore(homeTeam, awayTeam, 1, 2);
+
+        //then
+        assertEquals(1, scoreboard.getMatches().getFirst().getHomeScore());
+        assertEquals(2, scoreboard.getMatches().getFirst().getAwayScore());
+    }
 }
