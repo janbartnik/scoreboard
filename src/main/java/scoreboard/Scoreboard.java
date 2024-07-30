@@ -25,6 +25,9 @@ public class Scoreboard {
     }
 
     public void updateScore(String homeTeam, String awayTeam, int homeScore, int awayScore) {
+        if (homeScore < 0 && awayScore < 0) {
+            return;
+        }
         Match matchToFind = new Match(homeTeam, awayTeam);
         for (Match match : matches) {
             if (match.equals(matchToFind)) {
