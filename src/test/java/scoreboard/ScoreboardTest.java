@@ -3,7 +3,7 @@ package scoreboard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ScoreboardTest {
 
@@ -58,7 +58,7 @@ public class ScoreboardTest {
         //given
         String homeTeam = "home";
         String awayTeam = "away";
-        Match match = new Match("home", "away");;
+        Match match = new Match(homeTeam, awayTeam);
         scoreboard.getMatches().add(match);
 
         //when
@@ -74,7 +74,7 @@ public class ScoreboardTest {
         //given
         String homeTeam = "home";
         String awayTeam = "away";
-        Match match = new Match("home", "away");;
+        Match match = new Match(homeTeam, awayTeam);
         scoreboard.getMatches().add(match);
 
         //when
@@ -90,7 +90,7 @@ public class ScoreboardTest {
         //given
         String homeTeam = "home";
         String awayTeam = "away";
-        Match match = new Match("home", "away");;
+        Match match = new Match(homeTeam, awayTeam);
         scoreboard.getMatches().add(match);
 
         //when
@@ -106,7 +106,7 @@ public class ScoreboardTest {
         //given
         String homeTeam = "home";
         String awayTeam = "away";
-        Match match = new Match("home", "away");;
+        Match match = new Match(homeTeam, awayTeam);
         scoreboard.getMatches().add(match);
 
         //when
@@ -115,4 +115,36 @@ public class ScoreboardTest {
         //then
         assertEquals(0, scoreboard.getMatches().size());
     }
+
+    @Test
+    public void shouldNotDeleteMatchFromScoreboardWhenDoesNotExist() {
+        //given
+        Match match = new Match("home", "away");;
+        scoreboard.getMatches().add(match);
+
+        //when
+        scoreboard.finishMatch("test1", "test2");
+
+        //then
+        assertEquals(1, scoreboard.getMatches().size());
+        assertTrue(scoreboard.getMatches().contains(match));
+    }
+
+    @Test
+    public void shouldDeleteOnlySelectedMatchFromScoreboardWhenFinishes() {
+        //given
+        Match match1 = new Match("home1", "away1");
+        Match match2 = new Match("home2", "away2");
+        Match match3 = new Match("home3", "away3");
+        scoreboard.getMatches().add(match1);
+        scoreboard.getMatches().add(match2);
+        scoreboard.getMatches().add(match3);
+
+        //when
+        scoreboard.finishMatch(match2.getHomeTeam(), match2.getAwayTeam());
+
+        //then
+        assertFalse(scoreboard.getMatches().contains(match2));
+    }
+
 }
