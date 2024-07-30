@@ -97,7 +97,7 @@ public class ScoreboardTest {
         scoreboard.updateScore(homeTeam, awayTeam, 2, -1);
 
         //then
-        assertEquals(2, scoreboard.getMatches().getFirst().getHomeScore());
+        assertEquals(0, scoreboard.getMatches().getFirst().getHomeScore());
         assertEquals(0, scoreboard.getMatches().getFirst().getAwayScore());
     }
 }
