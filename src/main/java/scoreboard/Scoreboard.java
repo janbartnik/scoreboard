@@ -18,7 +18,7 @@ public class Scoreboard {
      * @return true when match was added to scoreboard
      */
     public boolean addNewMatch(String homeTeam, String awayTeam) {
-        if (isPlaying(homeTeam) || isPlaying(awayTeam)) {
+        if (isPlaying(homeTeam) || isPlaying(awayTeam) || homeTeam.equals(awayTeam)) {
             return false;
         }
         return matches.add(new Match(homeTeam, awayTeam));
