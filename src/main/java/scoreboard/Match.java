@@ -30,6 +30,10 @@ public class Match {
         return awayTeam;
     }
 
+    public int getScoreSum() {
+        return homeScore + awayScore;
+    }
+
     public int getHomeScore() {
         return homeScore;
     }

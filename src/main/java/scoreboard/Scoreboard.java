@@ -43,7 +43,15 @@ public class Scoreboard {
     }
 
     public List<Match> getSummary() {
-        return new ArrayList<>();
+        List<Match> summary = new ArrayList<>(matches);
+        summary.sort((m1, m2) -> {
+            int scoreCompare = Integer.compare(m2.getScoreSum(), m1.getScoreSum());
+            if (scoreCompare != 0) {
+                return scoreCompare;
+            }
+            return matches.indexOf(m2) - matches.indexOf(m1);
+        });
+        return summary;
     }
 
     List<Match> getMatches() {
