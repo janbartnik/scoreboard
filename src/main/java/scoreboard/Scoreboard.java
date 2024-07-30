@@ -13,6 +13,8 @@ public class Scoreboard {
     }
 
     /**
+     *  Adds new match to scoreboard. Teams should not be the same. Any of the team cannot currently have match in
+     *  progress.
      *
      * @param homeTeam home team name
      * @param awayTeam away team name
@@ -25,6 +27,14 @@ public class Scoreboard {
         return matches.add(new Match(homeTeam, awayTeam));
     }
 
+    /**
+     *  Updates scores of existing match in progress. Scores should equal or be higher than zero.
+     *
+     * @param homeTeam home team name
+     * @param awayTeam away team name
+     * @param homeScore score of home team
+     * @param awayScore score of away team
+     */
     public void updateScore(String homeTeam, String awayTeam, int homeScore, int awayScore) {
         if (homeScore < 0 || awayScore < 0) {
             return;
@@ -38,11 +48,20 @@ public class Scoreboard {
         }
     }
 
+    /**
+     * Finishes match, removing it from scoreboard.
+     * @param homeTeam home team name
+     * @param awayTeam away team name
+     */
     public void finishMatch(String homeTeam, String awayTeam) {
         Match matchToRemove = new Match(homeTeam, awayTeam);
         matches.remove(matchToRemove);
     }
 
+    /**
+     * Returns summary of matches, ordering them by sum of scores descending, then by recent match first.
+     * @return summary of matches
+     */
     public List<Match> getSummary() {
         List<Match> summary = new ArrayList<>(matches);
         summary.sort((m1, m2) -> {
