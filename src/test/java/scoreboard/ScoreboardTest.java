@@ -150,7 +150,8 @@ public class ScoreboardTest {
         assertFalse(scoreboard.getMatches().contains(match2));
     }
 
-    @Test void shouldReturnSummaryInDescendingOrder() {
+    @Test
+    public void shouldReturnSummaryInDescendingOrder() {
         //given
         Match match1 = new Match("home1", "away1", 1, 0);
         Match match2 = new Match("home2", "away2", 0, 1);
@@ -166,6 +167,35 @@ public class ScoreboardTest {
         expected.add(match3);
         expected.add(match2);
         expected.add(match1);
+
+        //when
+        List<Match> result = scoreboard.getSummary();
+
+        //then
+        assertIterableEquals(expected, result);
+
+    }
+
+    @Test
+    public void shouldReturnSummaryInCorrectOrder() {
+        //given
+        Match match1 = new Match("Mexico", "Canada", 0, 5);
+        Match match2 = new Match("Spain", "Brazil", 10, 2);
+        Match match3 = new Match("Germany", "France", 2,2);
+        Match match4 = new Match("Uruguay", "Italy", 6,6);
+        Match match5 = new Match("Argentina", "Australia", 3,1);
+        scoreboard.getMatches().add(match1);
+        scoreboard.getMatches().add(match2);
+        scoreboard.getMatches().add(match3);
+        scoreboard.getMatches().add(match4);
+        scoreboard.getMatches().add(match5);
+
+        List<Match> expected = new ArrayList<>();
+        expected.add(match4);
+        expected.add(match2);
+        expected.add(match1);
+        expected.add(match5);
+        expected.add(match3);
 
         //when
         List<Match> result = scoreboard.getSummary();
