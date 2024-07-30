@@ -68,4 +68,20 @@ public class ScoreboardTest {
         assertEquals(1, scoreboard.getMatches().getFirst().getHomeScore());
         assertEquals(2, scoreboard.getMatches().getFirst().getAwayScore());
     }
+
+    @Test
+    public void shouldNotUpdateWithNegativeScore() {
+        //given
+        String homeTeam = "home";
+        String awayTeam = "away";
+        Match match = new Match("home", "away");;
+        scoreboard.getMatches().add(match);
+
+        //when
+        scoreboard.updateScore(homeTeam, awayTeam, -1, -2);
+
+        //then
+        assertEquals(0, scoreboard.getMatches().getFirst().getHomeScore());
+        assertEquals(0, scoreboard.getMatches().getFirst().getAwayScore());
+    }
 }
